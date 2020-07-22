@@ -1,10 +1,9 @@
-let a = 10;
-let b = 20;
-
-if (a > b) {
-  resultado = a + b;
-} else {
-  resultado = a - b;
+function sum (a,b) {
+  if (a < b) {
+    return a + b;
+  } else {
+    return a - b;
+  }
 }
 
-console.log(resultado);
+console.log(sum(15,10));
