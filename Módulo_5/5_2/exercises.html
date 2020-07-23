@@ -58,7 +58,16 @@
   <body>
     <script>
       let title = document.createElement('h1');
+      title.innerHTML = 'Exercicio 5.2 - JavaScript DOM'
       document.body.appendChild(title);
+
+      let mainBox = document.createElement('div');
+      mainBox.className = 'main-content';
+      document.body.appendChild(mainBox);
+
+      let centerBox = document.createElement('div');
+      centerBox.className = 'center-content';
+      document.querySelector('.main-content').appendChild(centerBox);
     </script>
   </body>
 </html>
