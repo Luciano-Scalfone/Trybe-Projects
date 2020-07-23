@@ -97,6 +97,29 @@
         return document.querySelector('.right-content').appendChild(nonOrderList)
       }
       unorderedList();
+
+      function subTitles () {
+        let content;
+        for (let index = 1; index <= 3; index +=1) {
+          let subTitles = document.createElement('h3');
+          content = document.querySelector('.main-content').appendChild(subTitles);
+        }
+        return content;
+      }
+      subTitles();
+
+      title.className = 'title';
+
+      function descriptionClass () {
+        let arrayH3 = document.querySelectorAll('h3');
+        for (let index = 0; index < arrayH3.length; index +=1) {
+          arrayH3[index].className = 'description'
+        }
+        return arrayH3;
+      }
+      descriptionClass();
+
+      
     </script>
   </body>
 </html>
