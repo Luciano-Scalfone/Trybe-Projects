@@ -86,7 +86,17 @@
       image.className = 'small-image';
       document.querySelector('.left-content').appendChild(image);
 
-      
+      function unorderedList () {
+        let nonOrderList = document.createElement('ul');
+        let array = ['Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Dez'];
+        for (let index in array) {
+          let listElements = document.createElement('li');
+          listElements.innerHTML = array[index];
+          nonOrderList.appendChild(listElements);
+        }
+        return document.querySelector('.right-content').appendChild(nonOrderList)
+      }
+      unorderedList();
     </script>
   </body>
 </html>
