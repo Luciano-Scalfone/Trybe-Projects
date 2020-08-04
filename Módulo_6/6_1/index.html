@@ -33,9 +33,22 @@
       <input required type="radio" name="tipo-casa" id="casa">      
       <label for="casa">Casa</label>
       <input type="radio" name="tipo-casa" id="apartamento">
-      <label for="apartamento">Apartamento</label>
+      <label for="apartamento">Apartamento</label>      
     </fieldset>
+    <fieldset>
+      <legend>Último Emprego</legend>
+      <label for="resumo-curriculo">Resumo do Currículo</label>
+      <textarea required name="resumo-curriculo" id="resumo-curriculo" maxlength="1000" cols="30" rows="10"></textarea>
 
+      <label for="cargo">Cargo</label>
+      <input type="text" name="cargo" id="cargo">
+      <textarea required name="desc-cargo" id="desc-cargo" maxlength="500" cols="30" rows="10">
+      </textarea>
+
+      <label for="data-inicio">Data de início</label>
+      <input type="date" name="data-inicio" id="data-inicio" min="1950-01-01">
+    </fieldset>
+    <button type="submit">Finalisar</button>
   </form>
   <script src="script.js"></script>
 </body>
