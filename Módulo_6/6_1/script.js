@@ -65,26 +65,28 @@ if (day < 10) {
 today = year + '-' + month + '-'  + day;
 actual.setAttribute('max', today);
 
-let container = document.createElement('div')
+let container = document.createElement('div');
+const formBody = document.querySelector('#form-body');
 
 document.querySelector('#submit-button').addEventListener('click', function(event){
   event.preventDefault()
   const body = document.querySelector('#body');
-  curriculum(array);
+  curriculum();
   body.appendChild(container);
+  formBody.reset();
 });
 
-const name = document.querySelector('#full-name').value;
-const email = document.querySelector('#email').value;
-const cpf = document.querySelector('#cpf').value;
-const endereco = document.querySelector('#endereco').value;
-const cidade = document.querySelector('#cidade').value;
-const estado = document.querySelector('#estado').value;
-const casa = document.querySelector('#resumo-curriculo').value;
-const array = [name, email, cpf, endereco, cidade, estado, casa];
-
 function curriculum () {
+  const name = document.querySelector('#full-name').value;
+  const email = document.querySelector('#email').value;
+  const cpf = document.querySelector('#cpf').value;
+  const endereco = document.querySelector('#endereco').value;
+  const cidade = document.querySelector('#cidade').value;
+  const estado = document.querySelector('#estado').value;
+  const casa = document.querySelector('#resumo-curriculo').value;
+  const array = [name, email, cpf, endereco, cidade, estado, casa];
+  container.innerHTML = '';
   for (let index = 0; index < array.length; index += 1) {
-    container.innerHTML = array[index];
+    container.innerHTML += `<p>${array[index]}</p>`;
   }
 };
