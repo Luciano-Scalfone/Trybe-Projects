@@ -7,50 +7,81 @@
   <link rel="stylesheet" href="/bulma-0.9.0/css/">
 </head>
 <body id="body">
-  <header>Currículo</header>
+  <header>
+    Currículo
+  </header>
   <form action="" method="GET" id="form-body">
-    <fieldset>
+    <fieldset class="field">
       <legend>Dados Pessoais</legend>
       <label for="full-name">Nome Completo</label>
-      <input required type="text" name="full-name" id="full-name" maxlength="40">
+      <div class="control">
+        <input required type="text" name="full-name" id="full-name" maxlength="40">
+      </div>
 
       <label for="email">E-mail</label>
-      <input required type="email" name="email" id="email" maxlength="40">
+      <div class="control">
+        <input required type="email" name="email" id="email" maxlength="40">
+      </div>
 
       <label for="cpf">CPF</label>
-      <input required type="number" name="cpf" id="cpf" maxlength="40">
+      <div class="control">
+        <input required type="number" name="cpf" id="cpf" maxlength="40">
+      </div>
 
       <label for="endereco">Endereço</label>
-      <input required type="text" name="endereco" id="endereco" maxlength="200">
+      <div class="control">
+        <input required type="text" name="endereco" id="endereco" maxlength="200">
+      </div>
 
       <label for="cidade">cidade</label>
-      <input required type="text" name="cidade" id="cidade" maxlength="28">
+      <div class="control">
+        <input required type="text" name="cidade" id="cidade" maxlength="28">
+      </div>
 
       <label for="estado">Estado</label>
-      <select required name="estado" id="estado">
-      </select>
+      <div class="control">
+        <select required name="estado" id="estado"></select>
+      </div>
 
       <label for="tipo-casa">Tipo de Casa</label>
-      <input required type="radio" name="tipo-casa" id="casa" value="casa">      
-      <label for="casa">Casa</label>
-      <input type="radio" name="tipo-casa" id="apartamento" value="apartamento">
-      <label for="apartamento">Apartamento</label>      
+      <div class="control">
+        <input required type="radio" name="tipo-casa" id="casa" value="casa">  
+      </div>    
+        <label for="casa">Casa</label>
+      <div class="control">
+        <input type="radio" name="tipo-casa" id="apartamento" value="apartamento">
+      </div> 
+        <label for="apartamento">Apartamento</label>     
     </fieldset>
-    <fieldset>
+    <fieldset class="field">
       <legend>Último Emprego</legend>
       <label for="resumo-curriculo">Resumo do Currículo</label>
-      <textarea required name="resumo-curriculo" id="resumo-curriculo" maxlength="1000" cols="30" rows="10"></textarea>
+      <div class="control">
+        <textarea required name="resumo-curriculo" id="resumo-curriculo" maxlength="1000" cols="30" rows="10"></textarea>
+      </div>  
 
       <label for="cargo">Cargo</label>
-      <input type="text" name="cargo" id="cargo">
-      <textarea required name="desc-cargo" id="desc-cargo" maxlength="500" cols="30" rows="10">
-      </textarea>
+      <div class="control">
+        <input type="text" name="cargo" id="cargo">
+      </div>
+      <div class="control">
+        <textarea required name="desc-cargo" id="desc-cargo" maxlength="500" cols="30" rows="10">
+        </textarea>
+      </div>
 
       <label for="data-inicio">Data de início</label>
-      <input type="date" name="data-inicio" id="data-inicio" min="1950-01-01">
+      <div class="control"></div>
+        <input type="date" name="data-inicio" id="data-inicio" min="1950-01-01">
+      </div>
     </fieldset>
-    <button type="submit" id="submit-button">Finalisar</button>
-    <button type="reset" id="reset">Limpar</button>
+    <div class="field">
+      <div class="control">
+        <button type="submit" id="submit-button">Finalisar</button>
+      </div>
+      <div class="control">
+        <button type="reset" id="reset">Limpar</button>
+      </div>
+    </div>
   </form>
   <script src="script.js"></script>
 </body>

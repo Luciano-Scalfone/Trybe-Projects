@@ -84,7 +84,10 @@ function curriculum () {
   const estado = document.querySelector('#estado').value;
   const radio = document.querySelector('input[name="tipo-casa"]:checked').value;
   const resumo = document.querySelector('#resumo-curriculo').value;
-  const array = [name, email, cpf, endereco, cidade, estado, radio, resumo];
+  const cargo = document.querySelector('#cargo').value;
+  const cargoDesc = document.querySelector('#desc-cargo').value;
+  const date = document.querySelector('#data-inicio').value;
+  const array = [name, email, cpf, endereco, cidade, estado, radio, resumo, cargo, cargoDesc, date];
   container.innerHTML = '';
   for (let index = 0; index < array.length; index += 1) {
     container.innerHTML += `<p>${array[index]}</p>`;
