@@ -3,83 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <title>Document</title>
-  <link rel="stylesheet" href="/bulma-0.9.0/css/">
 </head>
 <body id="body">
-  <header>
-    Currículo
+  <header class="header">
+    <h1>Currículo</h1>
   </header>
   <form action="" method="GET" id="form-body">
     <fieldset class="field">
       <legend>Dados Pessoais</legend>
-      <label for="full-name">Nome Completo</label>
+      <label class="label" for="full-name">Nome Completo</label>
       <div class="control">
-        <input required type="text" name="full-name" id="full-name" maxlength="40">
+        <input required class="input is-primary" type="text" name="full-name" id="full-name" maxlength="40">
       </div>
 
-      <label for="email">E-mail</label>
+      <label class="label" for="email">E-mail</label>
       <div class="control">
-        <input required type="email" name="email" id="email" maxlength="40">
+        <input required class="input is-primary" type="email" name="email" id="email" maxlength="40">
       </div>
 
-      <label for="cpf">CPF</label>
+      <label class="label" for="cpf">CPF</label>
       <div class="control">
-        <input required type="number" name="cpf" id="cpf" maxlength="40">
+        <input required class="input is-primary" type="number" name="cpf" id="cpf" maxlength="40">
       </div>
 
-      <label for="endereco">Endereço</label>
+      <label class="label" for="endereco">Endereço</label>
       <div class="control">
-        <input required type="text" name="endereco" id="endereco" maxlength="200">
+        <input required class="input is-primary" type="text" name="endereco" id="endereco" maxlength="200">
       </div>
 
-      <label for="cidade">cidade</label>
+      <label class="label" for="cidade">cidade</label>
       <div class="control">
-        <input required type="text" name="cidade" id="cidade" maxlength="28">
+        <input required class="input is-primary" type="text" name="cidade" id="cidade" maxlength="28">
       </div>
 
-      <label for="estado">Estado</label>
+      <label class="label" for="estado">Estado</label>
       <div class="control">
-        <select required name="estado" id="estado"></select>
+        <div class="select is-primary" >
+          <select required name="estado" id="estado"></select>
+        </div>
       </div>
 
-      <label for="tipo-casa">Tipo de Casa</label>
+      <label class="label" for="tipo-casa">Tipo de Casa</label>
       <div class="control">
-        <input required type="radio" name="tipo-casa" id="casa" value="casa">  
+        <label for="casa">
+          <input required type="radio" name="tipo-casa" id="casa" value="casa">
+        Casa</label>
       </div>    
-        <label for="casa">Casa</label>
       <div class="control">
-        <input type="radio" name="tipo-casa" id="apartamento" value="apartamento">
-      </div> 
-        <label for="apartamento">Apartamento</label>     
+        <label for="apartamento">
+          <input type="radio" name="tipo-casa" id="apartamento" value="apartamento">
+        Apartamento</label> 
+      </div>     
     </fieldset>
     <fieldset class="field">
       <legend>Último Emprego</legend>
-      <label for="resumo-curriculo">Resumo do Currículo</label>
+      <label class="label" resumo-curriculo">Resumo do Currículo</label>
       <div class="control">
-        <textarea required name="resumo-curriculo" id="resumo-curriculo" maxlength="1000" cols="30" rows="10"></textarea>
+        <textarea required class="textarea is-small is-primary" name="resumo-curriculo" id="resumo-curriculo" maxlength="1000" cols="30" rows="10"></textarea>
       </div>  
 
-      <label for="cargo">Cargo</label>
+      <label class="label" for="cargo">Cargo</label>
       <div class="control">
-        <input type="text" name="cargo" id="cargo">
+        <input class="input is-primary" type="text" name="cargo" id="cargo">
       </div>
       <div class="control">
-        <textarea required name="desc-cargo" id="desc-cargo" maxlength="500" cols="30" rows="10">
-        </textarea>
+        <textarea required class="textarea is-small is-primary" name="desc-cargo" id="desc-cargo" maxlength="500" cols="30" rows="10"></textarea>
       </div>
 
-      <label for="data-inicio">Data de início</label>
-      <div class="control"></div>
-        <input type="date" name="data-inicio" id="data-inicio" min="1950-01-01">
+      <label class="label" for="data-inicio">Data de início</label>
+      <div class="control">
+        <input class="input is-primary" type="date" name="data-inicio" id="data-inicio" min="1950-01-01">
       </div>
     </fieldset>
-    <div class="field">
+    <div class="field buttons">
       <div class="control">
-        <button type="submit" id="submit-button">Finalisar</button>
+        <button class="button is-primary" type="submit" id="submit-button">Finalisar</button>
       </div>
       <div class="control">
-        <button type="reset" id="reset">Limpar</button>
+        <button class="button is-danger" type="reset" id="reset">Limpar</button>
       </div>
     </div>
   </form>
