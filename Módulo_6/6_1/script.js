@@ -73,7 +73,6 @@ document.querySelector('#submit-button').addEventListener('click', function(even
   const body = document.querySelector('#body');
   curriculum();
   body.appendChild(container);
-  formBody.reset();
 });
 
 function curriculum () {
@@ -83,10 +82,23 @@ function curriculum () {
   const endereco = document.querySelector('#endereco').value;
   const cidade = document.querySelector('#cidade').value;
   const estado = document.querySelector('#estado').value;
-  const casa = document.querySelector('#resumo-curriculo').value;
-  const array = [name, email, cpf, endereco, cidade, estado, casa];
+  const radio = document.querySelector('input[name="tipo-casa"]:checked').value;
+  const resumo = document.querySelector('#resumo-curriculo').value;
+  const cargo = document.querySelector('#cargo').value;
+  const cargoDesc = document.querySelector('#desc-cargo').value;
+  const date = document.querySelector('#data-inicio').value;
+  const array = [name, email, cpf, endereco, cidade, estado, radio, resumo, cargo, cargoDesc, date];
   container.innerHTML = '';
   for (let index = 0; index < array.length; index += 1) {
     container.innerHTML += `<p>${array[index]}</p>`;
   }
 };
+
+const button = document.querySelector('#reset');
+
+button.addEventListener('click', function () {
+  //formBody.reset();
+  if (container) {
+    container.innerHTML = '';
+  }
+});
