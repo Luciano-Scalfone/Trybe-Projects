@@ -8,8 +8,7 @@ function letterSearch (string) {
       newString[index] = string;
     }
   }
-  newString = newString.join('');
-  newString = `${newString}
+  newString = `${newString.join('')}
   
   Minhas cinco principais habilidades são:
   
