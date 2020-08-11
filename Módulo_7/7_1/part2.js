@@ -52,4 +52,9 @@
 // word("Antônio foi no banheiro e não sabemos o que aconteceu") // retorna 'aconteceu'
 
 // <<<<<< Exercicio 3 >>>>>>
+let button = document.querySelector('#count-button');
+let clickCount = 0;
+let countDiv = document.querySelector('#counter');
+countDiv.innerHTML = clickCount;
 
+button.onclick = () => countDiv.innerHTML = clickCount += 1;
