@@ -67,6 +67,6 @@ const expected_result = false;
 
 // Faça uma função que retorne true, caso nenhum author tenha nascido no mesmo ano, e false, caso contrário.
 
-const authorUnique = () => !books.some((a, b) => a.birthYear === b.birthYear)
+const authorUnique = () => books.every(element => !books.some(element1 => element1.author.birthYear === element.author.birthYear && element1.id !== element.id));
 
 assert.equal(authorUnique(), expected_result);
