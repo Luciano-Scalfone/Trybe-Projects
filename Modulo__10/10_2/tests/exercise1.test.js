@@ -1,8 +1,11 @@
 const uppercase = require('../exercise1.js');
 
 test('UpperCase function', (done) => {
-  uppercase('trybe', (str) => {
+  const callback = (str) => {
     expect(str).toBe('TRYBE');
+    console.log(str);
     done();
-  })
+  }
+
+  uppercase('trybe', callback);
 })
