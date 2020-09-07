@@ -4,21 +4,21 @@ const Animals = [
   { name: 'Preguiça', age: 5, type: 'Cat' },
 ];
 
-const findAnimalsByName = (name) => (
+const findAnimalsByAge = (age) => (
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      const animalName = Animals.find((animal) => animal.name === name);
-      if (animalName) {
-        return resolve(animalName);
+      const animals = Animals.filter((animal) => animal.age === age);
+      if (animals.length !== 0) {
+        return resolve(animals);
       }
 
-      return reject('Nenhum animal com esse nome!');
+      return reject({error: 'Nenhum animal com essa idade!'});
     }, 100);
   })
 );
 
-const getAnimal = (name) => {
-  return findAnimalsByName(name).then(animal => animal);
+const getAnimal = (age) => {
+  return findAnimalsByAge(age).then(animal => animal);
 }
 
 module.exports = getAnimal;
