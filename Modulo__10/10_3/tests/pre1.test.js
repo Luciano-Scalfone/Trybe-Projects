@@ -3,7 +3,7 @@ function randomNumber() {
   return r;
 }
 
-const divisible = (divisor) => (randomNumber() % divisor) === 0;
+const divisible = (divisor) => randomNumber() % divisor === 0;
 
 test('number is divisible', () => {
   randomNumber = jest.fn()
