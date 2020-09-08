@@ -4,7 +4,9 @@ function randomNumber() {
 }
 
 const divisible = (divisor) => {
-  return randomNumber() % divisor === 0;
+  const number = randomNumber();
+  console.log(number);
+  return number % divisor === 0;
 }
 
 test('number is divisible', () => {
@@ -13,18 +15,12 @@ test('number is divisible', () => {
   .mockReturnValueOnce(4)
   .mockReturnValueOnce(5);
 
-  divisible();
+  expect(divisible(2)).toBe(true);
   expect(randomNumber).toHaveBeenCalledTimes(1);
 
-  console.log(randomNumber())
-  expect(divisible(2)).toBe(true);
-  // expect(randomNumber).toHaveBeenCalledTimes(2);
-
-  console.log(randomNumber())
   expect(divisible(3)).toBe(false);
-  // expect(randomNumber).toHaveBeenCalledTimes(3);
+  expect(randomNumber).toHaveBeenCalledTimes(2);
 
-  console.log(randomNumber())
   expect(divisible(2)).toBe(true);
-  // expect(randomNumber).toHaveBeenCalledTimes(4);
+  expect(randomNumber).toHaveBeenCalledTimes(3);
 })
