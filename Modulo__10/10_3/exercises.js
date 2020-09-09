@@ -13,7 +13,7 @@ const firstLetter = (string) => {
 }
 
 const concat = (a, b) => {
-  return a + b;
+  return `${a} ${b}`;
 }
 
 module.exports = { randomNumber, toUpperCase, firstLetter, concat };
