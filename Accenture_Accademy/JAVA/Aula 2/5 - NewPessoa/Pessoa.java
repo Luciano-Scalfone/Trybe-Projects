@@ -1,8 +1,8 @@
-public class Pessoa1 {
+public class Pessoa {
   private String nome;
   private String RG;
 
-  public Pessoa1(String nome, String RG) {
+  public Pessoa(String nome, String RG) {
     this.setNome(nome);
     this.setRG(RG);
   }
@@ -25,10 +25,10 @@ public class Pessoa1 {
 
   public boolean equals(Object o) {
     // Devemos verificar se o objeto "o" eh uma instancia da classe Pessoa
-    if (o instanceof Pessoa1) {
+    if (o instanceof Pessoa) {
       // Devemos fazer o cast de Object para Pessoa
 
-      Pessoa1 p = (Pessoa1) o;
+      Pessoa p = (Pessoa) o;
      
       if (this.getNome().equals(p.getNome()) && this.getRG().equals(p.getRG())) {
         return true;
