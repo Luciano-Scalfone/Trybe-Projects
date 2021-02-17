@@ -26,9 +26,15 @@ public class TesteString {
     times.add(str9);
     times.add(str10);
 
+    for (Object str : times) { 		      
+      System.out.println(str); 		
+    }
+
+    System.out.println("");
+
     times.remove(6);
 
-    for (String str : times) { 		      
+    for (Object str : times) { 		      
       System.out.println(str); 		
     }
   }
