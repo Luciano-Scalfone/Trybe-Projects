@@ -1,7 +1,6 @@
 import java.util.Calendar;
 
 public class Enumeracoes {
-
     public static void main(String[] args) {
 
         // Dias cadastrados
@@ -22,7 +21,8 @@ public class Enumeracoes {
 
     public static String dataDeHoje() {
         Calendar hoje = Calendar.getInstance();
-        String diaDaSemanaTexto = "", mesDoAnoTexto = "";
+        String diaDaSemanaTexto = "";
+        String mesDoAnoTexto = "";
 
         int diaDaSemana = hoje.get(Calendar.DAY_OF_WEEK);
         int mesDoAno = hoje.get(Calendar.MONTH);
