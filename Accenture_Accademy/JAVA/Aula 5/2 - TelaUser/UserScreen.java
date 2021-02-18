@@ -20,7 +20,31 @@ public class UserScreen extends JFrame {
     JTextField jt = new JTextField();
     jt.setText("Insira texto aqui");
     jt.setHorizontalAlignment(JTextField.CENTER);
-    //insere o JTextField na Janela   
+    //insere o JTextField na Janela  
+    
+    JButton b1 = new JButton("Gravar");
+	//50 posição x, 30 posição y, 100 largura, 30 altura
+		b1.setBounds(180, 180, 100, 30);
+		b1.setBackground(new Color(0,0,170));
+		b1.setForeground(Color.YELLOW);
+		b1.setFont(new Font("Helvetica", Font.BOLD, 12));
+		b1.setToolTipText("Botao b1");
+		b1.setHorizontalAlignment(SwingConstants.CENTER);
+		b1.setVerticalAlignment(SwingConstants.CENTER);
+		b1.setEnabled(true);
+		b1.setMnemonic('G');
+
+    JButton b2 = new JButton("Sair");
+	//50 posição x, 30 posição y, 100 largura, 30 altura
+		b1.setBounds(180, 180, 100, 30);
+		b1.setBackground(new Color(0,0,170));
+		b1.setForeground(Color.YELLOW);
+		b1.setFont(new Font("Helvetica", Font.BOLD, 12));
+		b1.setToolTipText("Botao b2");
+		b1.setHorizontalAlignment(SwingConstants.CENTER);
+		b1.setVerticalAlignment(SwingConstants.CENTER);
+		b1.setEnabled(true);
+		b1.setMnemonic('S');
 
     setTitle("this.title");
     setSize(400, 400);
@@ -30,7 +54,9 @@ public class UserScreen extends JFrame {
     setLocationRelativeTo(null);
     
     getContentPane().add(criarJLabel());
-    getContentPane().add(jt); 
+    getContentPane().add(jt);
+    getContentPane().add(b1);
+    getContentPane().add(b2);
   }
 
   public static void main (String[] args) {
