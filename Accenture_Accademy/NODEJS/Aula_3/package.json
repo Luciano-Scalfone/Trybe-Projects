@@ -2,11 +2,11 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "jwt.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node jwt.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon jwt.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,6 @@
   "homepage": "https://github.com/Luciano-Scalfone/Trybe-Projects#readme",
   "dependencies": {
     "@hapi/hapi": "^20.1.0",
-    "@hapi/jwt": "^2.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4"
   },

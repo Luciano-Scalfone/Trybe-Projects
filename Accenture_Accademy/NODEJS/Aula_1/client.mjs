@@ -5,7 +5,7 @@ async function httpRequest(url) {
     const requisicao = http.request(url, (res) => {
       let body = '';
       res.on('data', (chunk) => body += chunk);
-    
+
       res.on('end', () => {
         resolve(body);
         console.log(body);

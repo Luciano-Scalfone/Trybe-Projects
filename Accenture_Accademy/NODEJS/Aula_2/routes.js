@@ -1,4 +1,5 @@
 const LancamentosController = require('./controller/LancamentosController.js');
+const AutorizacaoController = require('./controller/AutorizacaoController');
 
 module.exports = [
   {
@@ -45,5 +46,10 @@ module.exports = [
     method: 'GET',
     path: '/lancamentos/por-categoria',
     handler: LancamentosController.agruparPorCategoria
+  },
+  {
+    method: 'POST',
+    path: '/token',
+    handler: AutorizacaoController.token
   }
 ];

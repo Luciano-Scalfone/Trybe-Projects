@@ -1,4 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb');
+// const jwt = require('jsonwebtoken');
 
 async function obterCategoria(db, nome) {
   const categoria = await db.collection('categorias').findOne(
@@ -36,7 +37,41 @@ async function listarLancamentos(filtro) {
   return lancamentos;
 }
 
+// function validarJwt(token) {
+//   let valido = false;
+
+//   try {
+//     const payload = jwt.verify(token, 'chavesecreta');
+//     valido = !!payload;
+//   } catch (error) {
+//   }
+
+//   return valido;
+// }
+
 exports.listarLancamentos = async (req, h) => {
+  // const response = h.response();
+  // const { authorization } = req.headers;
+
+  // if (!authorization) {
+  //   response.code(401);
+  //   return { error: 'authorização naofoi enviada!' };
+  // }
+
+  // const [scheme, token] = authorization.split(' ');
+
+  // if (scheme !== 'Bearer') {
+  //   response.code(401);
+  //   return;
+  // }
+
+  // const valido = validarJwt(token);
+
+  // if (!valido) {
+  //   response.code(401);
+  //   return { error: 'Não autorizado!' };
+  // }
+
   return listarLancamentos();
 };
 
