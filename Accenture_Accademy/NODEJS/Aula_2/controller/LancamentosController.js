@@ -1,4 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb');
+const MongoDbRepository = require('../repositories/MongoDbRepository.js');
 // const jwt = require('jsonwebtoken');
 
 async function obterCategoria(db, nome) {
@@ -87,13 +88,12 @@ exports.obterLancamento = async (req, h) => {
   const client = await MongoClient.connect(connectionString)
   const db = client.db('teste');
 
-  const { id } = req.params;
-
-  const lancamentos = await db.collection('lancamentos').findOne(ObjectId(id));
+  const repositorio = new MongoDbRepository(db, 'lancamentos');
+  const lancamento = await repositorio.get(req.params.id);
 
   await client.close;
 
-  return lancamentos;
+  return lancamento;
 };
 
 exports.inserirLancamento = async (req, h) => {
