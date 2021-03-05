@@ -1,201 +1,89 @@
-const { MongoClient, ObjectId } = require('mongodb');
 const MongoDbRepository = require('../repositories/MongoDbRepository.js');
-// const jwt = require('jsonwebtoken');
+const LancamentosRepository = require('../repositories/LancamentosRepository.js');
 
-async function obterCategoria(db, nome) {
-  const categoria = await db.collection('categorias').findOne(
-    { nome },
-    { projection: { _id: 1 } }
-  );
+exports.listarLancamentos = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repositorio = new LancamentosRepository(db);
 
-  return categoria?._id;
+  return repositorio.list();
 };
 
-async function obterSaldo(db) {
-  const resultado = await db.collection('lancamentos').aggregate([
-    {
-      $group: {
-        _id: '',
-        saldo: { $sum: '$$ROOT.valor' }
-      }
-    },
-  ]).toArray();
-  const [{ saldo }] = resultado;
+exports.listarReceitas = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repositorio = new LancamentosRepository(db);
 
-  return saldo;
+  return repositorio.list({ valor: { $gte: 0 } });
 };
 
-const connectionString = 'mongodb://localhost:27017/teste';
+exports.listarDespesas = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repositorio = new LancamentosRepository(db);
 
-async function listarLancamentos(filtro) {
-  const client = await MongoClient.connect(connectionString);
-  const db = client.db('teste');
-
-  const lancamentos = await db.collection('lancamentos').find(filtro).toArray();
-
-  await client.close;
-
-  return lancamentos;
-}
-
-// function validarJwt(token) {
-//   let valido = false;
-
-//   try {
-//     const payload = jwt.verify(token, 'chavesecreta');
-//     valido = !!payload;
-//   } catch (error) {
-//   }
-
-//   return valido;
-// }
-
-exports.listarLancamentos = async (req, h) => {
-  // const response = h.response();
-  // const { authorization } = req.headers;
-
-  // if (!authorization) {
-  //   response.code(401);
-  //   return { error: 'authorização naofoi enviada!' };
-  // }
-
-  // const [scheme, token] = authorization.split(' ');
-
-  // if (scheme !== 'Bearer') {
-  //   response.code(401);
-  //   return;
-  // }
-
-  // const valido = validarJwt(token);
-
-  // if (!valido) {
-  //   response.code(401);
-  //   return { error: 'Não autorizado!' };
-  // }
-
-  return listarLancamentos();
+  return repositorio.list({ valor: { $lt: 0 } });
 };
 
-exports.listarReceitas = async (req, h) => {
-  return listarLancamentos({ valor: { $gte: 0 } });
-};
+exports.obterLancamento = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repositorio = new LancamentosRepository(db);
 
-exports.listarDespesas = async (req, h) => {
-  return listarLancamentos({ valor: { $lt: 0 } });
-};
-
-exports.obterLancamento = async (req, h) => {
-  const client = await MongoClient.connect(connectionString)
-  const db = client.db('teste');
-
-  const repositorio = new MongoDbRepository(db, 'lancamentos');
-  const lancamento = await repositorio.get(req.params.id);
-
-  await client.close;
+  const lancamento = await repositorio.getById(req.params.id);
 
   return lancamento;
 };
 
-exports.inserirLancamento = async (req, h) => {
-  const client = await MongoClient.connect(connectionString)
-  const db = client.db('teste');
+exports.inserirLancamento = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repoLancamentos = new LancamentosRepository(db);
+  const repoCategorias = new MongoDbRepository(db, 'categorias');
 
-  const { descricao, valor, categoria: getCategoria } = req.payload;
+  const { descricao, valor, categoria: nome } = req.payload;
 
-  const categoria = await obterCategoria(db, getCategoria);
-
-  const resultado = await db.collection('lancamentos').insertOne({
+  const categoria = await repoCategorias({ nome }, { projection: { _id: 1 } });
+  const lancamento = {
     descricao,
     valor,
-    categoria,
+    categoria: categoria?._id,
     criacao: new Date()
-  });
-
-  await client.close;
-
-  return resultado.ops[0];
-};
-
-exports.atualizarLancamento = async (req, h) => {
-  const client = await MongoClient.connect(connectionString)
-  const db = client.db('teste');
-
-  const { id } = req.params;
-  const { categoria } = req.payload;
-  const lancamento = req.payload;
-
-  if (categoria) {
-    lancamento.categoria = await obterCategoria(db, categoria);
   }
 
-  const resultado = await db.collection('lancamentos').updateOne(
-    { _id: ObjectId(id) },
-    { $set: lancamento }
-  );
-
-  await client.close;
-
-  return resultado.modifiedCount;
+  return repoLancamentos.insert(lancamento);
 };
 
-exports.apagarLancamento = async (req, h) => {
-  const client = await MongoClient.connect(connectionString)
-  const db = client.db('teste');
+exports.atualizarLancamento = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repoLancamentos = new LancamentosRepository(db);
+  const repoCategorias = new MongoDbRepository(db, 'categorias');
 
-  const { id } = req.params;
+  const { categoria: nome } = req.payload;
+  const lancamento = req.payload;
 
-  const lancamentos = await db.collection('lancamentos').findOne(ObjectId(id));
+  if (nome) {
+    const categoria = await repoCategorias({ nome }, { projection: { _id: 1 } });
+    lancamento.categoria = categoria?._id;
+  }
 
-  if (!lancamentos) console.log('Id Inexistente')
-
-  const resultado = await db.collection('lancamentos').deleteOne({ _id: ObjectId(id) });
-
-  await client.close;
-
-  return resultado;
+  return repoLancamentos.update(req.params.id, lancamento);
 };
 
-exports.obterSaldo = async (req, h) => {
-  const client = await MongoClient.connect(connectionString)
-  const db = client.db('teste');
+exports.apagarLancamento = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repoLancamentos = new LancamentosRepository(db);
 
-  const saldo = await obterSaldo(db);
+  return repoLancamentos.delete(req.params.id);
+};
 
-  await client.close;
+exports.obterSaldo = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repoLancamentos = new LancamentosRepository(db);
+
+  const saldo = await repoLancamentos.obterSaldo();
 
   return saldo;
 };
 
-exports.agruparPorCategoria = async (req, h) => {
-  const client = await MongoClient.connect(connectionString)
-  const db = client.db('teste');
+exports.agruparPorCategoria = async (req, _h) => {
+  const db = req.server.plugins['hapi-mongodb'].db;
+  const repoLancamentos = new LancamentosRepository(db);
 
-  const agrupamentos = await db.collection('lancamentos').aggregate([
-    {
-      $group: {
-        _id: '$categoria',
-        total: { $sum: '$$ROOT.valor' }
-      }
-    },
-    {
-      $lookup: {
-        from: 'categorias',
-        localField: '_id',
-        foreignField: '_id',
-        as: 'categoria'
-      }
-    },
-    { $unwind: '$categoria' },
-    { $project: { total: 1, categoria: '$categoria.nome', _id: 0 } }
-  ]).toArray();
-
-  const resultado = agrupamentos.reduce((acumulador, { total, categoria }) => {
-    acumulador[categoria] = total;
-
-    return acumulador;
-  }, {});
-
-  await client.close;
-
-  return resultado;
+  return repoLancamentos.resumoPorCategoria();
 };

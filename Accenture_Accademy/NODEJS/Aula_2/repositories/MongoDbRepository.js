@@ -6,13 +6,17 @@ class MongoDbRepository {
     this.collection = db.collection(collection);
   }
 
-  async list() {
-    return this.collection.find({}).toAraay();
+  async list(query) {
+    return this.collection.find(query).toAraay();
   }
 
-  async get(id) {
-    const _id = ObjectId(id);
-    return this.collection.findOne({ _id });
+  async get(query = {}, options = {}) {
+    return this.collection.findOne(query, options);
+  }
+
+  async getById(id) {
+    const _id = ObjectId.createFromHexString(id);
+    return this.get({ _id });
   }
 
   async insert(doc) {

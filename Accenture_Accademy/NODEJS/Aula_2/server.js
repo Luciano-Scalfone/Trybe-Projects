@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi');
 const rotas = require('./routes.js');
 const AutorizacaoMiddleware = require('./middlewares/AutorizacaoMiddleware.js');
+const MongoDbMiddleware = require('./middlewares/MongoDbMiddleware.js');
 
 (async () => {
   const server = Hapi.server({
@@ -9,6 +10,7 @@ const AutorizacaoMiddleware = require('./middlewares/AutorizacaoMiddleware.js');
   });
 
   await AutorizacaoMiddleware(server);
+  await MongoDbMiddleware(server);
 
   rotas.forEach(rota => server.route(rota));
 
